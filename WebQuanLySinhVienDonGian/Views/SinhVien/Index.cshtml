@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<WebQuanLySinhVienDonGian.Models.SinhVien>
+
+@if (TempData["ThongBao"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                @Html.Raw(TempData["ThongBao"]);
+            };
+    </script>
+}
+
+<h1 class="text-center" style="margin:40px">Quản lý sinh viên</h1>
+<a asp-controller="SinhVien" asp-action="ThemSinhVien" type="button" class="btn btn-primary" style="margin:20px 0px">Thêm sinh viên</a>
+<table class="table table-striped">
+    <thead>
+        <tr class="table-info">
+            <th scope="col">Mã sinh viên</th>
+            <th scope="col">Họ lót</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Giới tính</th>
+            <th scope="col">Ngày sinh</th>
+            <th scope="col">Khoá</th>
+            <th scope="col">Lớp</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sv in Model)
+        {
+        <tr>
+            <td>@sv.maSinhVien</td>
+            <td>@sv.hoLot</td>
+            <td>@sv.ten</td>
+            @if (sv.nu)
+            {
+                <td>Nữ</td>
+            }
+            else
+            {
+                <td>Nam</td>
+            }
+            <td>@String.Format("{0:dd/MM/yyyy}", sv.ngaySinh)</td>
+            <td>@sv.khoa</td>
+            <td>@sv.lop</td>
+            <td>
+                <a asp-controller="SinhVien" asp-action="CapNhatSinhVien" asp-route-id="@sv.maSinhVien" class="btn btn-danger">Cập nhật</a>
+                <a asp-controller="SinhVien" asp-action="XoaSinhVien" asp-route-id="@sv.maSinhVien" class="btn btn-danger">Xoá</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model WebQuanLySinhVienDonGian.Models.SinhVien
+
+@if (TempData["ThongBao"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                @Html.Raw(TempData["ThongBao"]);
+            };
+    </script>
+}
+
+<h1 class="text-center" style="margin:40px">Nhập thông tin sinh viên</h1>
+
+<form asp-controller="SinhVien" asp-action="ThemSinhVien" method="post">
+    <div class="form-group">
+        <label asp-for="@Model.hoLot">Họ lót</label>
+        <input asp-for="@Model.hoLot" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.ten">Tên</label>
+        <input asp-for="@Model.ten" type="text" class="form-control">
+    </div>
+    <div class="form-check">
+        <input asp-for="@Model.nu" type="checkbox" class="form-check-input">
+        <label asp-for="@Model.nu" class="form-check-label">Nữ</label>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.ngaySinh">Ngày sinh</label>
+        <input asp-for="@Model.ngaySinh" type="date" class="form-control">
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.khoa">Khoá</label>
+        <input asp-for="@Model.khoa" type="number" class="form-control">
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.lop">Lớp</label>
+        <input asp-for="@Model.lop" type="text" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Thêm</button>
+</form>
